@@ -1,0 +1,18 @@
+module jkff_tb;
+reg clk=0;
+reg reset=1;
+reg j=0;
+reg k=0;
+wire q;
+wire qnot;
+jkff JKFF(clk,reset,j,k,q,qnot);
+initial begin
+$dumpfile("dump.vcd");
+$dumpvars(1);
+j=1'b1;
+k=1'b1;
+#5 reset=1'b0;
+#25 $finish;
+end
+always #1 clk=~clk;
+endmodule
