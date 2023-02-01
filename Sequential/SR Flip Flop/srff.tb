@@ -1,0 +1,36 @@
+module srff_tb;
+reg [1:0]sr;
+reg clk,reset;
+wire q,qbar;
+srff SRFF(q,qbar,clk,reset,sr);
+always #5 clk=~clk
+initial begin
+$dumpfile("dump.vcd");
+$dumpvars(1);
+end
+initial begin
+clk = 1'b0;
+rst = 1; # 10; 
+rst = 0; #10; 
+$display("RSLT\ts\tr\tq\tqbar");
+sr = 0; # 10;       
+if ( q === 1'b0 )
+$display ("PASS\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+else
+$display ("FAIL\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+sr = 1; # 10;
+if ( q === 1'b0 )
+$display ("PASS\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+else
+$display ("FAIL\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+sr = 2; # 10; 
+if ( q === 1'b1 ) 
+$display ("PASS\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+else
+$display ("FAIL\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+sr = 3; # 10; 
+if ( q === 1'b1 )
+$display ("PASS\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);
+else
+$display ("FAIL\t%d\t%d\t%d\t%d",sr[1],sr[0],q,qbar);		
+end
