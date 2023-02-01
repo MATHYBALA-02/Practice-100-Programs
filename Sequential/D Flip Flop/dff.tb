@@ -1,0 +1,27 @@
+module dff_tb;
+reg clk;
+reg reset;
+reg d;
+wire q;
+wire qb;
+dff DFF(.clk(clk),.reset(reset),.d(d),.q(q),.qb(qb));
+initial begin
+$dumpfile("dump.vcd");
+$dumpvars(1);
+$display("reset flop");
+clk=0;
+reset=1;
+q=1'bx;
+display;
+$display("release reset");
+d=1;
+reset=0;
+display;
+$display("toggle clk");
+clk=1;
+display
+end
+task display;
+#1 $display("d:%0h,q:%0h,qb:%0h",d,d,q,b);
+endtask
+endmodule
