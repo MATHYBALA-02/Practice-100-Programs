@@ -1,0 +1,19 @@
+module count_tb;
+reg clk;
+reg reset;
+wire [3:0] out;
+count COUNT(.clk(clk),.reset(reset),.out(out));
+always #5 clk=~clk;
+$monitor("[%0tns] clk=%0b reset=%0b out=%0x %h",$time,clk,reset,out);
+clk <= 0;
+rstn <= 0;
+#20   rstn <= 1;                   
+#80  rstn <= 0;
+#50   rstn <= 1;
+#200 $finish;
+end
+initial begin
+$dumpvars();
+$dumpfile("dump.vcd");
+end
+endmodule
