@@ -13,6 +13,7 @@ module TestModule;
   initial begin
     $dumpfile("dump.vcd");
     $dumpvars()
+  end
 initial begin
   a = 0;
   b = 0;
