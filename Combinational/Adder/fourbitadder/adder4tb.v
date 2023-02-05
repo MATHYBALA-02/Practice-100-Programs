@@ -10,6 +10,9 @@ module TestModule;
 .sum(sum),
 .cout(cout)
 );
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars()
 initial begin
   a = 0;
   b = 0;
